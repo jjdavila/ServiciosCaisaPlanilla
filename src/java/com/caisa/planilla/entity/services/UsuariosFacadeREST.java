@@ -77,7 +77,7 @@ public class UsuariosFacadeREST extends AbstractFacade<Usuarios> {
     @GET
     @Path("/login/{login}/pass/{pass}")
     @Consumes({"application/json"})
-    @Produces("application/json")
+    @Produces({"application/json"})
     public List<Usuarios> login(
             @PathParam("login") String login,
             @PathParam("pass") String pass
