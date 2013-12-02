@@ -25,7 +25,7 @@ import javax.ws.rs.core.PathSegment;
  * @author NCN00973
  */
 @Stateless
-@Path("com.caisa.planilla.entity.empleados")
+@Path("/empleados")
 public class EmpleadosFacadeREST extends AbstractFacade<Empleados> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;
@@ -82,6 +82,18 @@ public class EmpleadosFacadeREST extends AbstractFacade<Empleados> {
     public Empleados find(@PathParam("id") PathSegment id) {
         com.caisa.planilla.entity.EmpleadosPK key = getPrimaryKey(id);
         return super.find(key);
+    }
+    
+    //metodo de busqueda por cedula de empleado
+    
+    @GET
+    @Path("/cedula/{cedula}")
+    @Consumes({"application/json"})
+    @Produces({"application/xml", "application/json"})
+    public List<Empleados> findCedula(@PathParam("cedula") String cedula)
+    {
+         
+       return super.find1Paramater("Empleados.findByCedula", "cedula", cedula);
     }
 
     @GET
