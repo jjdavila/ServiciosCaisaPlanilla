@@ -5,6 +5,7 @@
 package com.caisa.planilla.entity.services;
 
 import com.caisa.planilla.entity.Cargos;
+import com.caisa.planilla.entity.Empleados;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ import javax.ws.rs.Produces;
  * @author NCN00973
  */
 @Stateless
-@Path("com.caisa.planilla.entity.cargos")
+@Path("/cargos")
 public class CargosFacadeREST extends AbstractFacade<Cargos> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;
@@ -78,6 +79,18 @@ public class CargosFacadeREST extends AbstractFacade<Cargos> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
+    }
+    
+      //metodo de busqueda por cargo
+    
+    @GET
+    @Path("/nombre/{nombre}")
+    @Consumes({"application/json"})
+    @Produces({"application/xml", "application/json"})
+    public List<Cargos> findCedula(@PathParam("nombre") String nombre)
+    {
+         
+       return super.find1Paramater("Cargos.findByNombre", "nombre", nombre);
     }
 
     @Override
