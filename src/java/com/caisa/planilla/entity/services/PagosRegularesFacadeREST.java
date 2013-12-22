@@ -4,6 +4,7 @@
  */
 package com.caisa.planilla.entity.services;
 
+import com.caisa.planilla.entity.Contrato;
 import com.caisa.planilla.entity.PagosRegulares;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -23,7 +24,7 @@ import javax.ws.rs.Produces;
  * @author NCN00973
  */
 @Stateless
-@Path("com.caisa.planilla.entity.pagosregulares")
+@Path("/pagosregulares")
 public class PagosRegularesFacadeREST extends AbstractFacade<PagosRegulares> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;
@@ -78,6 +79,18 @@ public class PagosRegularesFacadeREST extends AbstractFacade<PagosRegulares> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
+    }
+    
+          //metodo de busqueda por numero de empleado
+    
+    @GET
+    @Path("/idEmpleado/{idEmpleado}")
+    @Consumes({"application/json"})
+    @Produces({"application/xml", "application/json"})
+    public List<PagosRegulares> findPagosRegulares(@PathParam("idEmpleado") int idEmpleado)
+    {
+         
+       return super.find1Paramater("PagosRegulares.findByIdEmpleado", "idEmpleado", idEmpleado);
     }
 
     @Override

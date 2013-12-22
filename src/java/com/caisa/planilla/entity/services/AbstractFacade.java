@@ -70,7 +70,7 @@ public abstract class AbstractFacade<T> {
     }
        
        
-       //busqueda por un parametro
+       //busqueda por un parametro string
        
            public List<T> find1Paramater(String queries, String parameterName1,String parameter1){
 //       CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
@@ -80,6 +80,19 @@ public abstract class AbstractFacade<T> {
                  
         return query.getResultList();
     }
+           
+           
+                  //busqueda por un parametro int
+       
+           public List<T> find1Paramater(String queries, String parameterName1,int parameter1){
+//       CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+//        cq.select(cq.from(entityClass));
+        Query query = getEntityManager().createNamedQuery(queries);
+        query.setParameter(parameterName1, parameter1);
+                 
+        return query.getResultList();
+        
+           }
 
 
 }
