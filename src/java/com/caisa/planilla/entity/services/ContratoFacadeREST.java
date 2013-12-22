@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  * @author NCN00973
  */
 @Stateless
-@Path("com.caisa.planilla.entity.contrato")
+@Path("/contrato")
 public class ContratoFacadeREST extends AbstractFacade<Contrato> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;
@@ -78,6 +78,18 @@ public class ContratoFacadeREST extends AbstractFacade<Contrato> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
+    }
+    
+        //metodo de busqueda por numero de empleado
+    
+    @GET
+    @Path("/numeroEmpleado/{numeroEmpleado}")
+    @Consumes({"application/json"})
+    @Produces({"application/xml", "application/json"})
+    public List<Contrato> findContratos(@PathParam("numeroEmpleado") String numeroEmpleado)
+    {
+         
+       return super.find1Paramater("Contrato.findByNumeroEmpleado", "numeroEmpleado", numeroEmpleado);
     }
 
     @Override
