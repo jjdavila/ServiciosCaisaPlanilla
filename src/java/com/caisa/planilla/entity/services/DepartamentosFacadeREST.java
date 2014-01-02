@@ -4,7 +4,8 @@
  */
 package com.caisa.planilla.entity.services;
 
-import com.caisa.planilla.entity.HorasTrabajadas;
+import com.caisa.planilla.entity.Departamentos;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,29 +21,29 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author NCN00973
+ * @author Jonathan
  */
 @Stateless
-@Path("/horastrabajadas")
-public class HorasTrabajadasFacadeREST extends AbstractFacade<HorasTrabajadas> {
+@Path("/departamentos")
+public class DepartamentosFacadeREST extends AbstractFacade<Departamentos> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;
 
-    public HorasTrabajadasFacadeREST() {
-        super(HorasTrabajadas.class);
+    public DepartamentosFacadeREST() {
+        super(Departamentos.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(HorasTrabajadas entity) {
+    public void create(Departamentos entity) {
         super.create(entity);
     }
 
     @PUT
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void edit(HorasTrabajadas entity) {
+    public void edit(Departamentos entity) {
         super.edit(entity);
     }
 
@@ -55,21 +56,21 @@ public class HorasTrabajadasFacadeREST extends AbstractFacade<HorasTrabajadas> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public HorasTrabajadas find(@PathParam("id") Integer id) {
+    public Departamentos find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<HorasTrabajadas> findAll() {
+    public List<Departamentos> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<HorasTrabajadas> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Departamentos> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
@@ -78,19 +79,6 @@ public class HorasTrabajadasFacadeREST extends AbstractFacade<HorasTrabajadas> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
-    }
-    
-    
-            //metodo de busqueda por numero de empleado
-    
-    @GET
-    @Path("/idEmpleadoNumero/{idEmpleadoNumero}")
-    @Consumes({"application/json"})
-    @Produces({"application/xml", "application/json"})
-    public List<HorasTrabajadas> findHorasTrabajadas(@PathParam("idEmpleadoNumero") int idEmpleadoNumero)
-    {
-         
-       return super.find1Paramater("HorasTrabajadas.findByIdEmpleadoNumero", "idEmpleadoNumero", idEmpleadoNumero);
     }
 
     @Override
