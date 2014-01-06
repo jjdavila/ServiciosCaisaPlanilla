@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -42,19 +43,24 @@ public class Cargos implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+      @JsonIgnore
     @Column(name = "id")
     private Integer id;
     @Size(max = 100)
     @Column(name = "Nombre")
     private String nombre;
     @Size(max = 500)
+      @JsonIgnore
     @Column(name = "Descripcion")
     private String descripcion;
+      @JsonIgnore
     @Column(name = "Usuario_id_creo")
     private Integer usuarioidcreo;
+        @JsonIgnore
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
+          @JsonIgnore
     @OneToMany(mappedBy = "idCargo")
     private Collection<Usuarios> usuariosCollection;
 

@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  * @author NCN00973
  */
 @Stateless
-@Path("com.caisa.planilla.entity.tiposdecuentabanco")
+@Path("tiposdecuentabanco")
 public class TiposDeCuentaBancoFacadeREST extends AbstractFacade<TiposDeCuentaBanco> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;

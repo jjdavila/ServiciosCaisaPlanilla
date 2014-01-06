@@ -8,11 +8,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -32,17 +33,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TiposDeCuentaBanco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id_tipos_cuenta")
     private Integer idTiposCuenta;
     @Size(max = 20)
     @Column(name = "descripcion")
     private String descripcion;
+    @Size(max = 40)
     @Column(name = "cod_cuenta")
-    private Integer codCuenta;
+    private String codCuenta;
+    @Size(max = 60)
     @Column(name = "nombre_cuenta")
-    private Integer nombreCuenta;
+    private String nombreCuenta;
 
     public TiposDeCuentaBanco() {
     }
@@ -67,19 +70,19 @@ public class TiposDeCuentaBanco implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Integer getCodCuenta() {
+    public String getCodCuenta() {
         return codCuenta;
     }
 
-    public void setCodCuenta(Integer codCuenta) {
+    public void setCodCuenta(String codCuenta) {
         this.codCuenta = codCuenta;
     }
 
-    public Integer getNombreCuenta() {
+    public String getNombreCuenta() {
         return nombreCuenta;
     }
 
-    public void setNombreCuenta(Integer nombreCuenta) {
+    public void setNombreCuenta(String nombreCuenta) {
         this.nombreCuenta = nombreCuenta;
     }
 

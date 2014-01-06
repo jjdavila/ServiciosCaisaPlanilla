@@ -21,11 +21,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
  * @author NCN00973
  */
+
 @Entity
 @Table(name = "usuarios")
 @XmlRootElement
@@ -44,9 +46,11 @@ public class Usuarios implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+      @JsonIgnore
     @Column(name = "id_usuarios")
     private Integer idUsuarios;
     @Size(max = 20)
+      @JsonIgnore
     @Column(name = "Cedula")
     private String cedula;
     @Size(max = 100)
@@ -58,6 +62,7 @@ public class Usuarios implements Serializable {
     @Size(max = 20)
     @Column(name = "login")
     private String login;
+      @JsonIgnore
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -67,9 +72,11 @@ public class Usuarios implements Serializable {
     @JoinColumn(name = "id_rol", referencedColumnName = "id")
     @ManyToOne
     private Roles idRol;
+     
     @JoinColumn(name = "id_cargo", referencedColumnName = "id")
     @ManyToOne
     private Cargos idCargo;
+       
     @JoinColumn(name = "activado", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Estados activado;

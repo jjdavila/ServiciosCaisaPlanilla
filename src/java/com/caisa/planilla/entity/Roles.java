@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -37,14 +38,17 @@ public class Roles implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+      @JsonIgnore
     @Column(name = "id")
     private Integer id;
     @Size(max = 100)
     @Column(name = "Nombre_rol")
     private String nombrerol;
     @Size(max = 200)
+      @JsonIgnore
     @Column(name = "Comentarios")
     private String comentarios;
+      @JsonIgnore
     @OneToMany(mappedBy = "idRol")
     private Collection<Usuarios> usuariosCollection;
 

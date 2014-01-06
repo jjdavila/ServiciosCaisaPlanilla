@@ -17,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -61,7 +62,8 @@ public class UsuariosFacadeREST extends AbstractFacade<Usuarios> {
 
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces(MediaType.APPLICATION_JSON)
+    //public  JsonResult findAll () {
     public List<Usuarios> findAll() {
         return super.findAll();
     }
@@ -77,12 +79,15 @@ public class UsuariosFacadeREST extends AbstractFacade<Usuarios> {
     @GET
     @Path("/login/{login}/pass/{pass}")
     @Consumes({"application/json"})
-    @Produces({"application/json"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @SuppressWarnings("empty-statement")
     public List<Usuarios> login(
             @PathParam("login") String login,
             @PathParam("pass") String pass
             ) {
-        
+//        List<Usuarios> mt = null;
+//        mt = super.find2Paramater("Usuarios.findByUserPass", "login", login, "pass", pass);
+//        
         return super.find2Paramater("Usuarios.findByUserPass", "login", login, "pass", pass);
     }
     

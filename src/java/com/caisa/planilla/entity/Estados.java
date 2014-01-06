@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -38,17 +39,21 @@ public class Estados implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @JsonIgnore
     @Column(name = "id")
     private Integer id;
     @Size(max = 20)
+    @JsonIgnore
     @Column(name = "nombre_estado")
     private String nombreEstado;
     @Size(max = 40)
     @Column(name = "nombre_estado_formateado")
     private String nombreEstadoFormateado;
     @Size(max = 100)
+    @JsonIgnore
     @Column(name = "Descripcion")
     private String descripcion;
+    @JsonIgnore
     @OneToMany(mappedBy = "idEstado")
     private Collection<Empleados> empleadosCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activado")
