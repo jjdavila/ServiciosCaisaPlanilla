@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  * @author NCN00973
  */
 @Stateless
-@Path("tiposdecuentabanco")
+@Path("tiposdecuentabanco/")
 public class TiposDeCuentaBancoFacadeREST extends AbstractFacade<TiposDeCuentaBanco> {
     @PersistenceContext(unitName = "ServiciosCaisaPlanillaPU")
     private EntityManager em;
@@ -52,11 +52,33 @@ public class TiposDeCuentaBancoFacadeREST extends AbstractFacade<TiposDeCuentaBa
         super.remove(super.find(id));
     }
 
+    
+    
+    
+    
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
     public TiposDeCuentaBanco find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    //MAV servicio para optener segun numero de cuenta
+    @GET
+    @Path("/codCuenta/{codCuenta}")
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
+    public List<TiposDeCuentaBanco> find_cuenta(@PathParam("codCuenta") String codCuenta) {        
+        return super.find1Paramater("TiposDeCuentaBanco.findByCodCuenta", "codCuenta", codCuenta);        
+//         return super.find2Paramater("Usuarios.findByUserPass", "login", login, "pass", pass);
+    }
+    
+    //MAV servicio para optener cuentas existentes
+     @GET
+    @Path("/count2/{codCuenta}")
+    @Consumes({"application/json"})
+    @Produces("text/plain")
+    public String countREST2(@PathParam("codCuenta") String codCuenta) {
+        return String.valueOf(super.count_2("TiposDeCuentaBanco.findByCodCuentaCoun", "codCuenta", codCuenta));
     }
 
     @GET

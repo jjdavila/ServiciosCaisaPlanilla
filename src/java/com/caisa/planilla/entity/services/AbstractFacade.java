@@ -60,6 +60,13 @@ public abstract class AbstractFacade<T> {
         return ((Long) q.getSingleResult()).intValue();
     }
     
+    //es para comprobar si existe una cuenta ( puede usarse para comprobar cualquier campo)
+    public int count_2(String querys, String parameterName1, String parameter1) {
+         Query query = getEntityManager().createNamedQuery(querys);
+        query.setParameter(parameterName1, parameter1);
+                return ((Long) query.getSingleResult()).intValue();
+    }
+    
        public List<T> find2Paramater(String querys, String parameterName1,String parameter1,String parameterName2, String parameter2){
 //       CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
 //        cq.select(cq.from(entityClass));

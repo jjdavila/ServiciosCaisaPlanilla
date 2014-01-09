@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TiposDeCuentaBanco.findByIdTiposCuenta", query = "SELECT t FROM TiposDeCuentaBanco t WHERE t.idTiposCuenta = :idTiposCuenta"),
     @NamedQuery(name = "TiposDeCuentaBanco.findByDescripcion", query = "SELECT t FROM TiposDeCuentaBanco t WHERE t.descripcion = :descripcion"),
     @NamedQuery(name = "TiposDeCuentaBanco.findByCodCuenta", query = "SELECT t FROM TiposDeCuentaBanco t WHERE t.codCuenta = :codCuenta"),
+    @NamedQuery(name = "TiposDeCuentaBanco.findByCodCuentaCoun", query = "SELECT count(t) FROM TiposDeCuentaBanco t WHERE t.codCuenta = :codCuenta"),
     @NamedQuery(name = "TiposDeCuentaBanco.findByNombreCuenta", query = "SELECT t FROM TiposDeCuentaBanco t WHERE t.nombreCuenta = :nombreCuenta")})
 public class TiposDeCuentaBanco implements Serializable {
     private static final long serialVersionUID = 1L;
